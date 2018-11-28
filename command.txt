@@ -1,0 +1,187 @@
+Kubernates
+
+Good evening @Ravi, I don’t understand how you did between 1:20 and 1:30 in the video for the next command to pass, I am blocked at this level.
+
+apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+
+kubeadm init 
+
+kubectl get pods --all-namespaces
+
+Could you help me ?
+
+Best regards
+
+i google it and downgrade docker
+apt-get update && apt-get install docker-ce=18.06.0~ce~3-0~ubuntu
+
+Master
+
+root@ip-172-31-17-82:~# history
+    1  clear
+    2  apt-get update && apt-get install -y apt-transport-https && apt install docker.io -y &&      systemctl start docker &&      systemctl enable docker && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && cat <<EOF >/etc/apt/sources.list.d/kubernetes.listdeb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+    3  apt-get update 
+    4  apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+    5  kubeadm init
+    6  mkdir -p $HOME/.kube
+    7  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    8  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    9  nano abc.yml
+   10  ls
+   11  kubectl create -f abc.yml
+   12  kubectl proxy --address 0.0.0.0 --accept-hosts '.*' &
+   13  kubectl get pods --all-namespaces
+   14  kubectl get nodes 
+   15  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+   16  kubectl get nodes 
+   17  kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
+   18  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   19  kubectl get pods --all-namespaces
+   20  kubectl get nodes
+   21  stop proxy:
+   22  netstat -tulp | grep kubectl
+   23  kill -9 7178
+   24  kubectl proxy --address 0.0.0.0 --accept-hosts '.*' &
+   25  ls
+   26  kubectl get nodes
+   27  history
+
+1  clear
+    2  docker --version
+    3  docker ps
+    4  ls
+    5  clear
+    6  wget https://github.com/quickfixtech/k8s-testnewproject/archive/master.zip
+    7  clear
+    8  ls
+    9  unzip master.zip
+   10  apt install unzip
+   11  ls
+   12  unzip master.zip
+   13  clear
+   14  ls
+   15  rm  master.zip
+   16  ls
+   17  cd k8s-testnewproject-master
+   18  ls
+   19  cd
+   20  kubectl run --image=nginx nginx-app --port=80 --env="DOMAIN=cluster"
+   21  kubectl expose deployment nginx-app --port=80 --name=nginx-http --type=loadBalancer
+   22  kubectl expose deployment nginx-app --port=80 --name=nginx-http --type=loadBalance
+   23  kubectl expose deployment nginx-app --port=80 --name=nginx-http --type=LoadBalancer
+   24  kubectl get service
+   25  ls
+   26  cd k8s-testnewproject-master
+   27  ls -lrt
+   28  kubectl apply -f deployment.yaml
+   29  kubectl get deploy
+   30  kubectl apply -f services.yaml
+   31  kubectl get deploy
+   32  kubectl get service
+   33  echo "# k8s_docker_sapp" >> README.md
+   34  git init
+   35  git add .
+   36  git commit -m "first commit"
+   37  git remote add origin https://github.com/devopsswmtools/k8s_docker_sapp.git
+   38  git push -u origin master
+   39  git remote add origin https://github.com/devopsswmtools/k8s_docker_sapp.git
+   40  git config --global user.name "swmdevopsedu"
+   41  git config --global user.email "swmdevops@gmail.com"
+   42  git push -u origin master
+   43  cd
+   44  wget https://github.com/quickfixtech/k8s-microservices/archive/master.zip
+   45  ls
+   46  unzip master.zip
+   47  clear
+   48  ls
+   49  cd k8s-microservices-master
+   50  ls
+   51  cd kube*
+   52  ls
+   53  ls -lrt
+   54  kubectl create -f db-pod.yaml
+   55  kubectl create -f db-service.yaml
+   56  kubectl create -f web-pod.yaml
+   57  kubectl create -f web-rs-ss.yaml
+   58  kubectl create -f web-rs.yaml
+   59  kubectl create -f web-service.yaml
+   60  kubectl get service
+   61  kubectl expose deployment testnewprojectservice --port=8085 --name=testnewprojectservice --type=LoadBalancer
+   62  kubectl get service
+   63  kubectl run --image=nodejs nodejs-app --port=3000 --env="DOMAIN=cluster"
+   64  kubectl expose deployment nodejs-app --port=3000 --name=nodejs-app-http --type=LoadBalancer
+   65  kubectl get service
+   66  ls
+   67  kubectl get service
+   68  cd
+   69  clear
+   70  docker pull devopsedu/employee
+   71  docker pull mongo
+   72  ls
+   73  docker images
+   74  docker ps
+   75  kubectl get service
+   76  kubectl run --image=devopsedu/employee employee --port=8888 --env="DOMAIN=cluster"
+   77  kubectl expose deployment employee --port=8888 --name=devopsedu/employee-http --type=LoadBalancer
+   78  kubectl expose deployment employee --port=8888 --name=employee-http --type=LoadBalancer
+   79  kubectl get service
+   80  kubectl run --image=mongo mongo --port=27017 --env="DOMAIN=cluster"
+   81  kubectl expose deployment mongo --port=27017 --name=mongo --type=LoadBalancer
+   82  kubectl get service
+   83  history
+
+Slave
+
+root@ip-172-31-19-250:~# history
+    1  clear
+    2  apt-get update && apt-get install -y apt-transport-https
+    3  apt install docker.io
+    4  apt-get update && apt-get install -y apt-transport-https
+    5  apt install docker.io
+    6  apt-get update && apt-get install -y apt-transport-https
+    7  apt install docker.io
+    8  apt-get update && apt-get install -y apt-transport-https
+    9  apt install docker.io
+   10  apt-get update && apt-get install -y apt-transport-https
+   11  apt install docker.io
+   12  apt-get install -y kubelet kubeadm
+   13  apt-get install -y kubelet kubeadm  kubernetes-cni
+   14  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl
+   15  chmod +x ./kubectl
+   16  sudo mv ./kubectl /usr/local/bin/kubectl
+   17  apt-get update && apt-get install -y apt-transport-https
+   18  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+   19  cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+   20  apt-get update
+   21  apt-get update && apt-get install -y apt-transport-https
+   22  apt install docker.io
+   23  systemctl start docker
+   24  systemctl enable docker
+   25  apt-get update
+   26  apt-get install -y kubelet kubeadm
+   27  apt-get install -y kubelet kubeadm  kubernetes-cni
+   28  kubeadm join 172.31.17.82:6443 --token 2u6uhh.7cthxw9vpm7w9a26 --discovery-token-ca-cert-hash sha256:261c69537f7cc90b13fe4c15bdd0889fab73e704972568c59086f0374dba8ca0
+   29  kubectl get nodes
+   30  history
+
+
+
+
+Run an image:
+kubectl run --image=nginx nginx-app --port=80 --env="DOMAIN=cluster"
+
+Expose the service:
+kubectl expose deployment nginx-app --port=80 --name=nginx-http --type=LoadBalancer
+
+Apply existing yml file:
+kubectl apply -f deployment.yaml
+
+kubectl get deploy
+
+Create a service
+ kubectl create -f db-pod.yaml
