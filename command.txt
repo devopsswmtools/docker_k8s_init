@@ -1,18 +1,5 @@
 Kubernates
 
-Good evening @Ravi, I don’t understand how you did between 1:20 and 1:30 in the video for the next command to pass, I am blocked at this level.
-
-apt-get install -y kubelet kubeadm kubectl kubernetes-cni
-
-kubeadm init 
-
-kubectl get pods --all-namespaces
-
-Could you help me ?
-
-Best regards
-
-i google it and downgrade docker
 apt-get update && apt-get install docker-ce=18.06.0~ce~3-0~ubuntu
 
 Master
