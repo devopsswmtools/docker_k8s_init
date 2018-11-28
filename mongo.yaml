@@ -1,0 +1,35 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "mongo",
+    "namespace": "default",
+    "selfLink": "/api/v1/namespaces/default/services/mongo",
+    "uid": "ddd08c0d-f35c-11e8-abe9-0ace93541af6",
+    "resourceVersion": "12822",
+    "creationTimestamp": "2018-11-28T22:28:01Z",
+    "labels": {
+      "app": "employee",
+      "run": "mongo"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "name": "mongo",
+        "protocol": "TCP",
+        "port": 27017,
+        "targetPort": 27017
+      }
+    ],
+    "selector": {
+      "run": "mongo"
+    },
+    "clusterIP": "10.96.157.126",
+    "type": "ClusterIP",
+    "sessionAffinity": "None"
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

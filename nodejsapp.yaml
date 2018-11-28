@@ -1,0 +1,35 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "employee-http",
+    "namespace": "default",
+    "selfLink": "/api/v1/namespaces/default/services/employee-http",
+    "uid": "69a2dead-f35c-11e8-abe9-0ace93541af6",
+    "resourceVersion": "13105",
+    "creationTimestamp": "2018-11-28T22:24:46Z",
+    "labels": {
+      "run": "employee"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 8888,
+        "targetPort": 8888,
+        "nodePort": 30412
+      }
+    ],
+    "selector": {
+      "run": "employee"
+    },
+    "clusterIP": "10.107.92.131",
+    "type": "NodePort",
+    "sessionAffinity": "None",
+    "externalTrafficPolicy": "Cluster"
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}
